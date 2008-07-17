@@ -1,0 +1,1 @@
+Here goes the best site ever: <strong><?php this_page(); ?></strong>

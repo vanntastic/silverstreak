@@ -1,0 +1,60 @@
+namespace :generate do
+  
+  desc 'Generate a view'
+  task :view do
+    
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:view FOR='name_of_view'"
+      exit
+    else  
+      stub_file = "#{ENV['FOR']}.php"
+      view_file = "views/#{ENV['FOR']}.php"
+      File.open(stub_file, "w+") do |file|
+        file << "<?php include '_dispatch.php'; ?>"
+      end
+      
+      File.open(view_file, "w+") do |file|
+        file << "<h1>I am a view for <?php this_page(); ?></h1>"
+      end
+      
+      system("mate #{view_file}") if system("mate")
+    end
+      
+  end
+  
+  desc 'Generate a layout'
+  task :layout do
+    
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:layout FOR='name_of_layout'"
+    else
+      
+      layout_file = "layouts/#{ENV['FOR']}.php"
+      File.open(layout_file, "w+") do |file|
+        file << "<!-- Hi I am your #{ENV['FOR']} layout file, erase this comment -->"
+      end
+      
+      system("mate #{layout_file}") if system("mate")
+    end
+    
+  end
+  
+  desc 'Generate a form helper'
+  task :form_helper do
+    
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:form_helper FOR='name_of_layout'"
+    else
+      
+      helper_file = "form_helpers/#{ENV['FOR']}.php"
+      File.open(helper_file, "w+") do |file|
+        file << "<?php \n"
+        file << "  // Insert your form logic here"
+        file << "?>"
+      end
+      
+      system("mate #{helper_file}") if system("mate")
+    end
+    
+  end
+end

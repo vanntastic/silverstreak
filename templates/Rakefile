@@ -49,7 +49,7 @@ namespace :generate do
       helper_file = "form_helpers/#{ENV['FOR']}.php"
       File.open(helper_file, "w+") do |file|
         file << "<?php \n"
-        file << "  // Insert your form logic here"
+        file << "  // Insert your form logic here\n"
         file << "?>"
       end
       

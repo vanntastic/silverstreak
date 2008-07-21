@@ -57,4 +57,21 @@ namespace :generate do
     end
     
   end
+  
+  desc 'Generate a helper file'
+  task :helper do
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:helper FOR='name_of_helper'"
+    else
+      helper_file = "helpers/#{ENV['FOR']}.php"
+      
+      File.open(helper_file, "w+") do |file|
+        file << "<?php \n"
+        file << "  // Insert your wonderful helper method here\n"
+        file << "?>"
+      end
+      
+      system("mate #{helper_file}") if system("mate")
+    end
+  end
 end

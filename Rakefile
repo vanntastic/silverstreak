@@ -3,6 +3,8 @@ namespace :silverstreak do
   desc 'Generates the public dir and copies over the template files'
   task :install do
     system("mkdir -p ../public")
+    system("mkdir -p ../public/images")
+    system("mkdir -p ../public/helpers")
     system("rsync -aC templates/* ../public")
 
     # differentiate between development and production modes

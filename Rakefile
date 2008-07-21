@@ -18,11 +18,13 @@ namespace :silverstreak do
       file << "if (file_exists($form_helper)) { include $form_helper; }\n"
       file << "$layout_file = 'layouts/' . this_file();\n"
       file << "$app_layout = 'layouts/' . 'application.php';\n"
+      file << "$helper_file = 'helpers/' . this_file();\n"
       file <<  "if (file_exists($layout_file)) {\n"
       file <<  "  include($layout_file);\n"
       file <<  "} else {\n"
       file <<  "  include($app_layout);\n"
       file << "}\n"
+      file << "if (file_exists($helper_file)) { include($helper_file); }\n"
       file << "initialize(); \n"
       file << "?>"
     end

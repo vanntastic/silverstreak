@@ -15,6 +15,7 @@ namespace :silverstreak do
       file << "// initialization file for helpers\n"
       file << "include '../" << folder_name << "/_helpers.php';\n"
       file << "$form_helper = 'form_helpers/' . this_file();\n"
+      file << "$email_to = 'you@yourplace.com';\n"
       file << "if (file_exists($form_helper)) { include $form_helper; }\n"
       file << "$layout_file = 'layouts/' . this_file();\n"
       file << "$app_layout = 'layouts/' . 'application.php';\n"

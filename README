@@ -1,4 +1,6 @@
-== Silverstreak
+Silverstreak
+============
+
 This is a small php framework... actually more like a collection of files if you will. This
 set of files that might be useful if you are under the following situations:
 
@@ -22,29 +24,78 @@ set of files that might be useful if you are under the following situations:
      
 3. nice abstraction methods for checking on request methods and form submitting
 4. some form helpers and text helpers...
+5. dry layouts and views, in the railsy format
+6. rake generators for generating layouts and view stubs
 
-== Requirements
+Requirements
+============
+
 - Rake (get it at : http://rake.rubyforge.org/)
 - Apache (Litespeed works okay though, except .htaccess doesn't work)
 
-== Installation
+Installation
+============
+
 Just put the silverstreak folder inside a php site like so:
 
-- my_cool_website
-  |- silverstreak
+  - my_cool_website
+    |- silverstreak
 
-1. cd silverstreak
-2. rake silverstreak:install
-3. it should generate a public folder with all the files that you need in the root of you
-   web/project folder, so make sure you point your vhost to my_cool_website/public
-4. it will generate a default index.php file for you, on any pages that you setup, make
-   sure that the following line is at the top of the page:
+  1. cd silverstreak
+  2. rake silverstreak:install
+  3. it should generate a public folder with all the files that you need in the root of you
+     web/project folder, so make sure you point your vhost to my_cool_website/public
+  4. it will generate a default index.php file for you, on any pages that you setup, make
+     sure that the following line is at the top of the page, so that you can use all the
+     features for silverstreak, the index file is basically a stub for the index view (more
+     information about layouts and views below):
    
-   <?php include '_init.php'; ?>
+     <?php include '_dispatch.php'; ?>   
    
-== Helpers and methods
+   
+How it Works
+============
 
-= link_to 
+Think MVC without the Model or even the Controller, this is more like just the View and Layout,
+when you submit a request, this is what happens:
+  
+  1. GET http://yoursite.com/
+  2. Attempts to find the default document (which might be 'index' in this case)
+  3. Renders index.php (which is just a stub) 
+  4. Looks for any form helpers/helpers/layouts/views named 'index', it will render the 
+     application layout if the 'index' layout cannot be found
+   
+Generators
+==========
+
+Silverstreak uses rake to generate stubs for helpers, views, form_helpers, and layouts. Simply 
+call Rake generate:[command] to use. Here are the following generators:
+   
+   1. generate:view FOR='name of view'
+   2. generate:layout FOR='name of layout'
+   3. generate:helper FOR='name of helper'
+   4. generate:form_helper FOR='name of form helper'
+   
+Helpers and methods
+===================
+
+Silverstreak uses form helpers and standard page helpers, they are located in:
+  
+  Location of page helper
+    - public/helpers/[name of request]
+    
+  Location of form helper
+    - public/form_helpers/[name of request]
+    
+Page helpers are files that contain page specific methods that you can use for a specific page. 
+Form helpers are somewhat like controllers, but their main purpose is to process forms.
+
+Public Helper Methods
+=====================
+
+link_to 
+-------
+
 Somewhat similar to rails' link_to method, this will automatically generate an anchor with
 to the page you want it to link to.
 
@@ -61,7 +112,9 @@ to the page you want it to link to.
   link_to("Home", "index.php", "Go to Home Page")
     #=> <a href='index.php' title='Go to Home Page'>Home</a>
   
-= partial
+partial
+-------
+
 Includes a file, I know you can use include, but if you following the convention of naming
 your partials (pages) with a leading underscore (_) then it will automatically know that 
 it is a partial.
@@ -72,7 +125,9 @@ it is a partial.
 
   partial('nav') #=> include('_nav.php');
   
-= display_partial_if
+display_partial_if
+------------------
+
 Displays a partial if a given condition is true... can be useful if you are displaying 
 user specific data.
 
@@ -83,7 +138,9 @@ user specific data.
   display_partial_if(is_form_submitted(),'success');
   # => will display the success partial after the form is submitted
   
-== dasherize
+dasherize
+---------
+
 Replaces spaces in a string with dashes
 
   dasherize($string);
@@ -93,7 +150,9 @@ Replaces spaces in a string with dashes
   dasherize("Black magic woman");
   # => "Black-magic-woman";
   
-== underscore
+underscore
+----------
+
 Replaces spaces in a string with underscores
   
   underscore($string);
@@ -103,38 +162,85 @@ Replaces spaces in a string with underscores
   underscore("Black magic woman");
   # => "Black_magic_woman";
   
-== select_for_states
+select_for_states
+-----------------
+
 Generates a select form element that will have a list of all the states in the US.
 
   select_for_states($name_of_select='state');
   
-== this_file
+this_file
+---------
+
 Returns the name of the current file in question
 
   this_file();
   
-== this_page
+this_page
+---------
+
 Basically echoes this_file(), use on your pages
 
   this_page();
   
-== request_method
+request_method
+--------------
+
 Returns the request method, (GET or POST), basically an abstraction from 
 $_SERVER['REQUEST_METHOD'];
 
   request_method();
   
-== is_form_submitted
+is_form_submitted
+-----------------
+
 Checks whether the form has been submitted or not.
 
  is_form_submitted($submit_name="submit", $method="POST");
  
-== is_post_request
+is_post_request
+---------------
+
 Returns true if the request method for the page is POST
 
  is_post_request();
  
-== is_get_request
+is_get_request
+--------------
+
 Returns true if the request method for the page is GET
  
  is_get_request();
+ 
+include_css
+-----------
+
+Includes css files from the css directory, you can pass an array to include multiple css files.
+
+  // single css file
+  include_css('default');
+  
+  // multiple css files
+  include_css(array('default','app'))
+  
+include_js
+----------
+
+Includes js files from the javascripts directory, you can pass an array to include multiple js
+files.
+
+  // single js file
+  include_js('app');
+  
+  // multiple js files
+  include_js(array('jquery','app'))
+  
+yield
+-----
+
+Yields the output for the view, mainly used in layouts to designate where the view file will 
+output to:
+
+  // assuming this paragraph is in your layout file somewhere
+  <p><?php yield(); ?></p>
+  

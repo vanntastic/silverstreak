@@ -88,7 +88,29 @@ Silverstreak uses form helpers and standard page helpers, they are located in:
     - public/form_helpers/[name of request]
     
 Page helpers are files that contain page specific methods that you can use for a specific page. 
-Form helpers are somewhat like controllers, but their main purpose is to process forms.
+Form helpers are somewhat like controllers, but their main purpose is to process forms. When 
+you write form helpers, forget using the $_POST varables to access form values, simply call
+a form value by its name:
+
+  INSTEAD OF: $_POST['first_name']
+  DO: $first_name
+  
+An example of a form helper might look like this:
+  
+  <?php 
+
+    if (is_form_submitted()) {
+      $subject = "Someone has just contact you!";
+
+      $body = "The following person has signed up: \n";
+      $body .= "--------\n\n";  
+      $body .= "Here is the information that was submitted:\n\n";
+      $body .= "Email : $email\n";
+
+      mail($email_to, $subject, $body, 'From:you@yourwebsite.com');
+    }
+
+  ?>
 
 Public Helper Methods
 =====================

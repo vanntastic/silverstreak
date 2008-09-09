@@ -224,8 +224,4 @@
     }
 	}
 	
-  function initialize()
-  {
-    //put any functions that you want to start on each page load here
-  }
 ?>

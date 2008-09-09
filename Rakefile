@@ -4,7 +4,6 @@ namespace :silverstreak do
   task :install do
     system("mkdir -p ../public")
     system("mkdir -p ../public/images")
-    system("mkdir -p ../public/helpers")
     system("rsync -aC templates/* ../public")
 
     # differentiate between development and production modes
@@ -32,6 +31,7 @@ namespace :silverstreak do
       file <<  "  include($app_layout);\n"
       file << "}\n"
       file << "if (file_exists($helper_file)) { include($helper_file); }\n"
+      file << "include 'helpers/application.php'; \n"
       file << "initialize(); \n"
       file << "?>"
     end

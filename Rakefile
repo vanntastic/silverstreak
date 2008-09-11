@@ -13,6 +13,7 @@ namespace :silverstreak do
       file << "<?php\n"
       file << "// initialization file for helpers\n"
       file << "include '../" << folder_name << "/_helpers.php';\n"
+      file << "include 'helpers/application.php'; \n"
       file << "$form_helper = 'form_helpers/' . this_file();\n"
       file << "$email_to = 'you@yourplace.com';\n"
       file << "if (file_exists($form_helper)) {\n"
@@ -31,7 +32,6 @@ namespace :silverstreak do
       file <<  "  include($app_layout);\n"
       file << "}\n"
       file << "if (file_exists($helper_file)) { include($helper_file); }\n"
-      file << "include 'helpers/application.php'; \n"
       file << "initialize(); \n"
       file << "?>"
     end

@@ -76,4 +76,62 @@ namespace :generate do
       system("mate #{helper_file}") if system("mate")
     end
   end
+  
 end
+
+namespace :destroy do
+  
+  desc 'Destroy a view'
+  task :view do
+    
+    if ENV['FOR'].nil?
+      puts "USAGE : rake destroy:view FOR='name_of_view'"
+      exit
+    else  
+      stub_file = "#{ENV['FOR']}.php"
+      view_file = "views/#{ENV['FOR']}.php"
+      
+      File.exists?(stub_file) ? File.delete(stub_file) : puts(not_found_for("stub"))
+      File.exists?(view_file) ? File.delete(view_file) : puts(not_found_for("view"))
+    end
+      
+  end
+  
+  desc 'Destroy a layout'
+  task :layout do
+    
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:layout FOR='name_of_layout'"
+    else
+      layout_file = "layouts/#{ENV['FOR']}.php"
+      File.exists?(layout_file) ? File.delete(layout_file) : puts(not_found_for("layout"))
+    end
+    
+  end
+  
+  desc 'Generate a form helper'
+  task :form_helper do
+    
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:form_helper FOR='name_of_layout'"
+    else
+      helper_file = "form_helpers/#{ENV['FOR']}.php"
+      File.exists?(helper_file) ? File.delete(helper_file) : puts(not_found_for("form helper"))
+    end
+    
+  end
+  
+  desc 'Generate a helper file'
+  task :helper do
+    if ENV['FOR'].nil?
+      puts "USAGE : rake generate:helper FOR='name_of_helper'"
+    else
+      helper_file = "helpers/#{ENV['FOR']}.php"
+      File.exists?(helper_file) ? File.delete(helper_file) : puts(not_found_for("helper"))
+    end
+  end
+  
+  
+  def not_found_for(file_type); "#{file_type} file for #{ENV['FOR']} not found..."; end
+end
+

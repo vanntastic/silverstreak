@@ -8,7 +8,7 @@ namespace :generate do
       exit
     else  
       stub_file = "#{ENV['FOR']}.php"
-      view_file = "views/#{ENV['FOR']}.php"
+      view_file = "public/views/#{ENV['FOR']}.php"
       File.open(stub_file, "w+") do |file|
         file << "<?php include '_dispatch.php'; ?>"
       end
@@ -29,7 +29,7 @@ namespace :generate do
       puts "USAGE : rake generate:layout FOR='name_of_layout'"
     else
       
-      layout_file = "layouts/#{ENV['FOR']}.php"
+      layout_file = "public/layouts/#{ENV['FOR']}.php"
       File.open(layout_file, "w+") do |file|
         file << "<!-- Hi I am your #{ENV['FOR']} layout file, erase this comment -->"
       end
@@ -46,7 +46,7 @@ namespace :generate do
       puts "USAGE : rake generate:form_helper FOR='name_of_layout'"
     else
       
-      helper_file = "form_helpers/#{ENV['FOR']}.php"
+      helper_file = "public/form_helpers/#{ENV['FOR']}.php"
       File.open(helper_file, "w+") do |file|
         file << "<?php \n"
         file << "  if (is_form_submitted()) {\n"
@@ -65,7 +65,7 @@ namespace :generate do
     if ENV['FOR'].nil?
       puts "USAGE : rake generate:helper FOR='name_of_helper'"
     else
-      helper_file = "helpers/#{ENV['FOR']}.php"
+      helper_file = "public/helpers/#{ENV['FOR']}.php"
       
       File.open(helper_file, "w+") do |file|
         file << "<?php \n"
@@ -89,7 +89,7 @@ namespace :destroy do
       exit
     else  
       stub_file = "#{ENV['FOR']}.php"
-      view_file = "views/#{ENV['FOR']}.php"
+      view_file = "public/views/#{ENV['FOR']}.php"
       
       File.exists?(stub_file) ? File.delete(stub_file) : puts(not_found_for("stub"))
       File.exists?(view_file) ? File.delete(view_file) : puts(not_found_for("view"))
@@ -103,7 +103,7 @@ namespace :destroy do
     if ENV['FOR'].nil?
       puts "USAGE : rake generate:layout FOR='name_of_layout'"
     else
-      layout_file = "layouts/#{ENV['FOR']}.php"
+      layout_file = "public/layouts/#{ENV['FOR']}.php"
       File.exists?(layout_file) ? File.delete(layout_file) : puts(not_found_for("layout"))
     end
     
@@ -115,7 +115,7 @@ namespace :destroy do
     if ENV['FOR'].nil?
       puts "USAGE : rake generate:form_helper FOR='name_of_layout'"
     else
-      helper_file = "form_helpers/#{ENV['FOR']}.php"
+      helper_file = "public/form_helpers/#{ENV['FOR']}.php"
       File.exists?(helper_file) ? File.delete(helper_file) : puts(not_found_for("form helper"))
     end
     
@@ -126,7 +126,7 @@ namespace :destroy do
     if ENV['FOR'].nil?
       puts "USAGE : rake generate:helper FOR='name_of_helper'"
     else
-      helper_file = "helpers/#{ENV['FOR']}.php"
+      helper_file = "public/helpers/#{ENV['FOR']}.php"
       File.exists?(helper_file) ? File.delete(helper_file) : puts(not_found_for("helper"))
     end
   end

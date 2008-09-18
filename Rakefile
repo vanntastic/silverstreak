@@ -7,6 +7,7 @@ namespace :silverstreak do
     system("rsync -aC templates/* ../public")
     system("rsync -aC config/* ../config/")
     system("rsync -aC Capfile ../Capfile")
+    system("ln -s ../public/Rakefile ../Rakefile")
     
     # differentiate between development and production modes
     folder_name = Dir.entries("..").include?("core") ? "core" : "silverstreak"

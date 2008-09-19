@@ -7,7 +7,7 @@ namespace :generate do
       puts "USAGE : rake generate:view FOR='name_of_view'"
       exit
     else  
-      stub_file = "#{ENV['FOR']}.php"
+      stub_file = "public/#{ENV['FOR']}.php"
       view_file = "public/views/#{ENV['FOR']}.php"
       File.open(stub_file, "w+") do |file|
         file << "<?php include '_dispatch.php'; ?>"

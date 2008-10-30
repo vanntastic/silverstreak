@@ -11,5 +11,6 @@ SERVER = "project_hostname"
 TO = "~/location/of/project/on/server"
 
 puts("Starting deployment...")
-system("rsync -avzC #{FROM} #{SERVER}:#{TO}")
+# use -avzC to exclude .git and .svn repositories
+system("rsync -avz #{FROM} #{SERVER}:#{TO}")
 puts("Deployment Completed!...")

@@ -115,14 +115,14 @@ An example of a form helper might look like this:
 Deployment
 ==========
 
-If you use Capistrano, there is a template setup ready for you to fill out, just open 
-config/deploy.rb, fill out the values and do the following things (assuming you're using
-apache2, if not.. then it should still work.. I've just got some apache deployment methods
-to help with setting up a vhost and such):
+Using capistrano is overkill, it has been replaced with rsync, chmod 755 config/deploy.rb if you
+have to. Open and configure the following variables:
 
-  1. cap deploy:setup
-  2. cap deploy
-  4. apache:setup
+* FROM : location/of/project
+* SERVER : hostname or ip of server
+* TO : destination/of/project/on/server
+
+Then run ./config/deploy.rb to deploy site
 
 Public Helper Methods
 =====================

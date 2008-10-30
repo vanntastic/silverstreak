@@ -191,6 +191,13 @@
     };
   }
   
+  // simple helper for submit button
+  // submit_btn("Submit Value")
+  function submit_btn($value='Submit')
+  {
+    echo('<input type="submit" value="' . $value . '" name="submit" id="submit">');
+  }
+  
 	// shortcut for checking on the post request
 	function is_post_request(){
     if (request_method() == "POST"){

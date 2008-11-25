@@ -4,15 +4,10 @@ namespace :silverstreak do
   task :install do
     system("mkdir -p ../public")
     system("mkdir -p ../public/images")
+    system("mkdir -p ../config")
     system("rsync -aC templates/* ../public")
-<<<<<<< HEAD:Rakefile
-    system("rsync -aC config/* ../config")
-=======
     system("rsync -aC config/* ../config/")
-    system("rsync -aC Capfile ../Capfile")
-    # TODO : test this and make sure it works...
     system("ln -nfs public/Rakefile ../Rakefile")
->>>>>>> bfb0c1603a2b1f48cdea31675b10eaf9c2665fdd:Rakefile
     
     # differentiate between development and production modes
     folder_name = Dir.entries("..").include?("core") ? "core" : "silverstreak"

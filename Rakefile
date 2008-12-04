@@ -4,6 +4,7 @@ namespace :silverstreak do
   task :install do
     system("mkdir -p ../public")
     system("mkdir -p ../public/images")
+    system("mkdir -p ../public/form_helpers")
     system("mkdir -p ../config")
     system("rsync -aC templates/* ../public")
     system("rsync -aC config/* ../config/")

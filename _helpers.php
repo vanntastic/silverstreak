@@ -55,13 +55,13 @@
   	 you can pass either a string or array of files... and it should
      include them all
      EXAMPLE:
-     for multiple files
-     include_js(array('jquery','app'));
-     <link href='javascripts/jquery.js' ...
-     <link href='javascripts/app.js' ...
-     for single files
-     include_css('app');
-     <link href='javascripts/app.js' ... */
+       for multiple files
+       include_js(array('jquery','app'));
+       <link href='javascripts/jquery.js' ...
+       <link href='javascripts/app.js' ...
+       for single files
+       include_css('app');
+       <link href='javascripts/app.js' ... */
 	
 	function include_js($files='')
 	{
@@ -76,6 +76,40 @@
       $js_link .= " src='javascripts/" . $files . ".js'></script>\n";
 	  }
 	  echo $js_link;
+	}
+	
+  // google ajax api hook : include any js library you want courtesy of google!
+  // EXAMPLE:
+  //  Single Library
+  //    include_js_lib('jquery-1.3.2');
+  //  Multiple Libraries
+  //    include_js_lib('jquery-1.3.2','jqueryui-1.7.2');
+  // --
+  // Google Documentation : http://code.google.com/apis/ajaxlibs/documentation/index.html
+	function include_js_lib($libs='')
+	{
+	  $js_libs = '';
+    $content = '<script src="http://www.google.com/jsapi"></script>';
+    if (is_array($libs)) {
+      for ($i=0; $i < count($libs); $i++) { 
+        $_lib = split("-",$libs[$i]);
+        $lib = $_lib[0];
+        $_version = split("-",$libs[$i]);
+        $version = $_version[1];
+        $js_libs .= "google.load('${lib}','${version}');";
+      }
+    } else {
+        $_lib = split("-",$libs);
+        $lib = $_lib[0];
+        $_version = split("-",$libs);
+        $version = $_version[1];
+        $js_libs = "google.load('${lib}','${version}');";
+    }
+    $output = $content;
+    $output .= '<script type="text/javascript" charset="utf-8">';
+    $output .= $js_libs;
+    $output .= '</script>';
+    echo $output;
 	}
 	
   // simply a way to include a file based on the _filename.php convention

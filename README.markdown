@@ -283,10 +283,10 @@ will output to:
 include_js_lib
 --------------
 
-Hooks into the google ajax libraries, so you can use any library you want! more info at :
-google : http://code.google.com/apis/ajaxlibs/documentation/index.html
+Hooks into the google ajax libraries, so you can use any library you want! get more info at [google](http://code.google.com/apis/ajaxlibs/documentation/index.html)
 
     // include jquery 1.3.2
     include_js_lib('jquery-1.3.2');
+    
     // include jquery 1.3.2 and jqueryui-1.7.2
     include_js_lib('jquery-1.3.2','jqueryui-1.7.2');

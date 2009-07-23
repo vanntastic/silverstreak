@@ -265,4 +265,43 @@
     }
 	}
 	
+  // TODO : add this to the documentation and add the tags method form wp_template
+  // alias for $_SERVER['HTTP_HOST']
+  function domain()
+  {
+    return $_SERVER['HTTP_HOST'];
+  }
+  
+  // write an html tag and return as a string:
+  // EX : tag('h1','Nice header','title="nice header" class="cool"')
+  // # => <h1 title="nice header" class="cool">Nice Header</h1>
+  function tag($name='',$content='',$attrs='')
+  {
+    return "<${name} ${attrs}>${content}</${name}>";
+  }
+  
+  // returns a self closing tag such as img or br
+  // EX : single_tag('img','src="images/google.jpg"');
+  // # => <img src="images/google.jpg" />
+  function single_tag($name='', $attrs='')
+  {
+    return "<${name} ${attrs} />";
+  }
+  
+  // echos a single tag output
+  // EX : output_single_tag('img','src="images/google.jpg"');
+  // # => <img src="images/google.jpg" />
+  function output_single_tag($name='', $attrs='')
+  {
+    echo single_tag($name,$attrs);
+  }
+  
+  // outputs the tag, can be used in your theme templates
+  // EX : output_tag('h1','Nice Header','title="nice header" class="cool"')
+  // # => echo <h1 title="nice header" class="cool">Nice Header</h1>
+  function output_tag($name='',$content='',$attrs='')
+  {
+    echo tag($name,$content,$attrs);
+  }
+  
 ?>

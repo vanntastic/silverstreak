@@ -290,3 +290,36 @@ Hooks into the google ajax libraries, so you can use any library you want! get m
     
     // include jquery 1.3.2 and jqueryui-1.7.2
     include_js_lib('jquery-1.3.2','jqueryui-1.7.2');
+    
+    
+tag($name,$content,$attrs)
+--------------------------
+
+Creates an (opening and closing) html tag.
+
+    // <h1 title="Sweet" class="heading">My Header</h1>
+    tag('h1','My Header','title="Sweet" class="heading");
+    
+single_tag($name,$attrs)
+------------------------
+
+Creates a self closing tag.
+
+    // <img src="http://www.google.com/intl/en_ALL/images/logo.gif" />
+    single_tag('img', 'src="http://www.google.com/intl/en_ALL/images/logo.gif"');
+    
+output_tag($name,$content,$attrs)
+---------------------------------
+
+Echos an (opening and closing) tag.
+
+    // <h1 title="Sweet" class="heading">My Header</h1>
+    output_tag('h1','My Header','title="Sweet" class="heading");
+    
+output_single_tag($name,$attrs)
+-------------------------------
+
+Echos a self closing tag.
+
+    // <img src="http://www.google.com/intl/en_ALL/images/logo.gif" />
+    output_single_tag('img', 'src="http://www.google.com/intl/en_ALL/images/logo.gif"');

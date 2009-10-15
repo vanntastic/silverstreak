@@ -209,6 +209,13 @@
 	
 	// echos this file ... useful if you need to display the file name on the page...
 	function this_page(){ echo this_file(); }
+	
+  // returns the current view
+	function view()
+	{
+	 $view = explode(".",  this_file());
+	 echo $view[0];
+	}
 
   // alias for $_SERVER['REQUEST_METHOD']
   function request_method(){ return $_SERVER['REQUEST_METHOD']; }

@@ -328,4 +328,19 @@
     return $string;
   }
   
+  // Returns list of files and directories in an array
+  function list_files($dir='')
+  {
+    $file_ary = array();
+    if ($handle = opendir($dir)) {
+        while (false !== ($file = readdir($handle))) {
+            if ($file != "." && $file != "..") {
+                array_push($file_ary, $file);
+            }
+        }
+        closedir($handle);
+    }
+    return $file_ary;
+  }
+  
 ?>

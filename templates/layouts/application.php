@@ -5,11 +5,9 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Your title here</title>
-		<script type="text/javascript" src="javascripts/prototype.js"></script>
-		<script type="text/javascript" src="javascripts/css-browser-select.js"></script>	
-
-		<link rel="stylesheet" href="css/default.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+    <?php include_js_lib('jquery-1.4.2','jqueryui-1.8.0'); ?>
+    <?php include_js('app'); ?>
+    <?php include_css(array('default','reset')); ?>
 		
 		<style type="text/css" media="screen">
 		  h1, #container{
@@ -19,8 +17,7 @@
 	</head>
 
 	<body>
-		<h1 
-		  style="">
+		<h1>
       Welcome to Silverstreak!
     </h1>
     

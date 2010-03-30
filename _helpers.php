@@ -46,7 +46,7 @@
 	   }
 	  } else {
       $css_link .= "<link rel='stylesheet'";
-	    $css_link .= " href='css/" . $files . ".css' types='text/css' media='screen' />\n";
+	    $css_link .= " href='css/" . $files . ".css' type='text/css' media='screen' />\n";
 	  }
 	  echo $css_link;
 	}
